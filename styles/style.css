@@ -184,6 +184,7 @@
   padding-inline-start: 10px;
   padding-block: 5px;
   line-height: 22px;
+  font-stretch: 80%;
 }
 
 .image {
