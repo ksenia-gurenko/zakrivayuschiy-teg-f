@@ -36,13 +36,15 @@
   background-size: cover;
   background-attachment: fixed;
   margin: auto;
-  font-variation-settings: "wght" var(--main-font-weight), "wdth" 100, "opsz" 0 'slnt' 0; /*для тестов*/
+  font-variation-settings: "wght" var(--main-font-weight), "wdth" 100,
+    "opsz" 0 "slnt" 0; /*для тестов*/
 }
 
 @supports (font-variation-settings: normal) {
   .page {
     font-family: var(--main-font, sans-serif), sans-serif;
-    font-variation-settings: "wght" var(--main-font-weight), "wdth" 100, "opsz" 0 'slnt' 0;
+    font-variation-settings: "wght" var(--main-font-weight), "wdth" 100,
+      "opsz" 0 "slnt" 0;
   }
 }
 
