@@ -18,8 +18,8 @@
   min-inline-size: 320px;
   min-block-size: 100dvb;
   font-family: "Inter", sans-serif;
-  font-size: var(--main-font-size);
-  font-weight: var(--main-font-weight);
+  font-size: var(--main-font-size, 18px);
+  font-weight: var(--main-font-weight, 400);
   background-color: var(--background-color);
   color: var(--text-color);
   background-image: repeating-linear-gradient(
@@ -40,8 +40,8 @@
 
 @supports (font-variation-settings: normal) {
   .page {
-    font-family: var(--main-font), sans-serif;
-    font-variation-settings: "wght" var(--main-font-weight), "wdth" 100, "opsz" 0;
+    font-family: var(--main-font, sans-serif), sans-serif;
+    font-variation-settings: "wght" var(--main-font-weight), "wdth" 100, "opsz" 0 'slnt' 0;
   }
 }
 
@@ -59,7 +59,7 @@
 .header__title {
   display: flex;
   justify-content: center;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, sans-serif), sans-serif;
   font-size: var(--title-font-size);
   font-weight: var(--title-font-weight);
 }
@@ -77,7 +77,7 @@
   justify-content: center;
   margin-block-start: 20px;
   margin-block-end: 25px;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, sans-serif), sans-serif;
   font-size: var(--subtitle-font-size);
   font-weight: var(--title-font-weight);
   text-transform: uppercase;
@@ -99,7 +99,7 @@
 .button {
   cursor: pointer;
   user-select: none;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, sans-serif), sans-serif;
   font-size: var(--button-font-size);
   font-weight: var(--title-font-weight);
   color: var(--text-color);
@@ -180,11 +180,10 @@
 }
 
 .card__title {
-  font-weight: var(--accent-font-weight);
+  font-weight: var(--accent-font-weight, 700);
   padding-inline-start: 10px;
   padding-block: 5px;
   line-height: 22px;
-  font-stretch: 80%;
 }
 
 .image {
@@ -237,7 +236,7 @@
   z-index: 2;
   inset-inline-end: 25px;
   inset-block-start: 25px;
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, sans-serif), sans-serif;
   font-weight: var(--title-font-weight);
   font-size: var(--button-font-size);
   text-transform: uppercase;
@@ -264,6 +263,7 @@
   flex-direction: column;
   gap: 27px;
   padding: 25px;
+  line-height: 21px; /* or 117% */
 }
 
 .card__buttons {
@@ -447,7 +447,7 @@
 }
 
 .dialog__text {
-  font-family: var(--accent-font);
+  font-family: var(--accent-font, sans-serif), sans-serif;
   font-size: var(--button-font-size);
   font-weight: var(--title-font-weight);
   color: var(--text-color);
