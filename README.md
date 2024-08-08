@@ -1,1 +1,1 @@
-git@github.com:ksenia-gurenko/zakrivayuschiy-teg-f.git
+https://github.com/ksenia-gurenko/zakrivayuschiy-teg-f

@@ -42,7 +42,7 @@
 
 @supports (font-variation-settings: normal) {
   .page {
-    font-family: var(--main-font, sans-serif), sans-serif;
+    font-family: var(--main-font), sans-serif;
     font-variation-settings: "wght" var(--main-font-weight), "wdth" 100,
       "opsz" 0 "slnt" 0;
   }
@@ -50,7 +50,6 @@
 
 .header {
   width: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
-  height: clamp(20.4375rem, 19.5352rem + 3.8498vw, 23rem);
   margin: auto;
   margin-block: 100px;
   padding-block-start: clamp(7.5rem, 7.1479rem + 1.5023vw, 8.5rem);
@@ -59,28 +58,29 @@
   border: 2px solid var(--text-color);
 }
 
-.header__title {
+.header__logo {
   display: flex;
   justify-content: center;
-  font-family: var(--accent-font, sans-serif), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: var(--title-font-size);
   font-weight: var(--title-font-weight);
+  text-decoration: none;
 }
 
-.header__title::before {
+.header__logo::before {
   content: "<";
 }
 
-.header__title::after {
+.header__logo::after {
   content: ">";
 }
 
-.subtitle {
+.header__title{
   display: flex;
   justify-content: center;
   margin-block-start: 20px;
   margin-block-end: 25px;
-  font-family: var(--accent-font, sans-serif), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: var(--subtitle-font-size);
   font-weight: var(--title-font-weight);
   text-transform: uppercase;
@@ -99,10 +99,16 @@
   gap: 5px;
 }
 
+@media (width <= 375px) {
+  .theme-menu__list {
+  margin-inline-start: 20px;
+  }
+}
+
 .button {
   cursor: pointer;
   user-select: none;
-  font-family: var(--accent-font, sans-serif), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: var(--button-font-size);
   font-weight: var(--title-font-weight);
   color: var(--text-color);
@@ -136,24 +142,13 @@
   position: relative;
   opacity: 0.6;
   pointer-events: none;
-  transition: opacity 0.3s;
 }
 
 .theme-menu__button:disabled::before {
   content: "▶";
   position: absolute;
-  animation: moving 0.5s ease-in-out infinite reverse;
+  animation: moving 0.5s ease-in-out infinite alternate;
   inset-inline-start: -20px;
-}
-
-@keyframes moving {
-  0% {
-    inset-inline-start: -20px;
-  }
-
-  100% {
-    inset-inline-start: -16px;
-  }
 }
 
 .button:focus {
@@ -177,56 +172,57 @@
 
 .card {
   margin: auto;
-  width: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
+  inline-size: clamp(23.4375rem, 16.2852rem + 30.5164vw, 43.75rem);
   background-color: var(--background-color);
   border: 2px solid var(--text-color);
 }
 
 .card__title {
-  font-weight: var(--accent-font-weight, 700);
+  font-size: var(--main-font-size, 18px);
+  font-variation-settings: "wght" var(--accent-font-weight, 700);
   padding-inline-start: 10px;
   padding-block: 5px;
-  line-height: 22px;
+  line-height: 122%; /*or 22px/*/
 }
 
 .image {
   border-top: 2px solid var(--text-color);
   border-bottom: 2px solid var(--text-color);
-  width: 100%;
+  inline-size: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: center;
 }
 
-.filter_1 {
+.filter_saturate {
   filter: saturate(158%);
 }
 
-.filter_2 {
+.filter_opacity {
   filter: opacity(0.8);
 }
 
-.filter_3 {
+.filter_sepia {
   filter: sepia(80%);
 }
 
-.filter_4 {
+.filter_contrast {
   filter: contrast(90%);
 }
 
-.filter_5 {
+.filter_brightness {
   filter: brightness(150%);
 }
 
-.filter_6 {
+.filter_drop-shadow {
   filter: drop-shadow(5px 15px 3px rgba(0, 0, 0, 0.8));
 }
 
-.filter_7 {
+.filter_grayscale {
   filter: grayscale(0.5);
 }
 
-.filter_8 {
+.filter_multiple {
   filter: saturate(80%) hue-rotate(30deg) brightness(80%) invert(0.1);
 }
 
@@ -239,7 +235,7 @@
   z-index: 2;
   inset-inline-end: 25px;
   inset-block-start: 25px;
-  font-family: var(--accent-font, sans-serif), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-weight: var(--title-font-weight);
   font-size: var(--button-font-size);
   text-transform: uppercase;
@@ -266,7 +262,7 @@
   flex-direction: column;
   gap: 27px;
   padding: 25px;
-  line-height: 21px; /* or 117% */
+  line-height: 117%; /*or  21px*/
 }
 
 .card__buttons {
@@ -280,6 +276,7 @@
 .card__icon-button {
   height: 38px;
   border: 2px solid transparent;
+  transition: border 0.3s;
 }
 
 .card__icon-button:focus-visible {
@@ -287,96 +284,17 @@
   transition: border 0.3s;
 }
 
-.sparks {
-  opacity: 0;
-}
-
-.core {
-  fill: transparent;
-  transition: fill 0.3s 0.03s linear;
-}
-
-.main-body {
-  fill: transparent;
-  transition: fill 0.3s linear;
-}
-
-.contour {
-  transition: fill 0.1s linear;
-}
-
-.card__icon-button:hover {
-  .core {
-    fill: var(--contour-color);
-    transition: fill 0.3s linear;
-  }
-
-  .main-body {
-    fill: var(--contour-color);
-    transition: fill 0.3s 0.05s linear;
-  }
-}
-
-.card__icon-button:active {
-  .core {
-    fill: var(--colored-heart);
-    transition: fill 0.3s linear;
-  }
-
-  .main-body {
-    fill: var(--colored-heart);
-    transition: fill 0.3s 0.05s linear;
-  }
-}
-
-.like-icon.is-liked {
-  .heart {
-    animation: icon-scaling 0.3s 0.1s ease-in reverse;
-  }
-
-  .core {
-    fill: var(--colored-heart);
-    transition: fill 0.3s linear;
-  }
-
-  .main-body {
-    fill: var(--colored-heart);
-    transition: fill 0.3s 0.05s linear;
-  }
-
-  .contour {
-    fill: var(--colored-heart);
-    transition: fill 0.3s 0.06s linear;
-  }
-
-  .sparks {
-    animation: sparks-coloring 0.3s 0.3s ease-in reverse;
-  }
-}
-
-@keyframes icon-scaling {
-  100% {
-    transform: scale(1.5);
-    transform-origin: center;
-  }
-}
-
-@keyframes sparks-coloring {
-  100% {
-    opacity: 1;
-  }
-}
-
 .card__like-button {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 130px;
-  height: 38px;
+  inline-size: 130px;
+  block-size: 38px;
   padding: 9px 17px;
   gap: 10px;
   border: 2px solid var(--text-color);
+  transition: box-shadow 0.3s;
 }
 
 .card__like-button:focus-visible {
@@ -393,10 +311,22 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  width: 335px;
-  height: 51px;
+  inline-size: clamp(19.125rem, 18.4868rem + 2.723vw, 20.9375rem);
+  block-size: 51px;
   border: 2px solid var(--text-color);
   background-color: var(--background-color);
+  transition: box-shadow 0.3s;
+}
+
+@media (width <= 375px) {
+  .save_button {
+  flex-direction: column;
+  block-size: 84px;
+}
+  .button__floppy {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 .save_button:focus-visible {
@@ -405,7 +335,8 @@
 }
 
 .card__like-button::before,
-.save_button::before {
+.save_button::before,
+.dialog__button::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -417,7 +348,8 @@
 }
 
 .card__like-button:hover::before,
-.save_button:hover::before {
+.save_button:hover::before,
+.dialog__button:hover::before {
   transform: scaleX(1);
 }
 
@@ -432,8 +364,7 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  width: clamp(21.3125rem, 20.9604rem + 1.5023vw, 22.3125rem);
-  height: 195px;
+  inline-size: clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem);
 }
 
 .dialog-floppy {
@@ -443,28 +374,40 @@
 }
 
 .floppy-and-text-container {
-  width: clamp(16.0625rem, 15.2702rem + 3.3803vw, 18.3125rem);
   margin-block: 30px;
   display: flex;
   gap: 20px;
 }
 
 .dialog__text {
-  font-family: var(--accent-font, sans-serif), sans-serif;
+  font-family: var(--accent-font), fantasy;
   font-size: var(--button-font-size);
   font-weight: var(--title-font-weight);
   color: var(--text-color);
   text-transform: uppercase;
   line-height: 150%; /* or 21px */
+  inline-size: clamp(12.375rem, 11.5827rem + 3.3803vw, 14.625rem);;
 }
 
 .dialog__button {
+  position: relative;
   margin: auto;
-  width: clamp(16.0625rem, 15.2702rem + 3.3803vw, 18.3125rem);
-  height: 38px;
+  inline-size: clamp(16.0625rem, 15.2702rem + 3.3803vw, 18.3125rem);
+  block-size: 38px;
   border: 2px solid var(--text-color);
+  background-color: var(--background-color);
+  transition: box-shadow 0.3s;
+  text-transform: uppercase;
+}
+
+.dialog__button:focus-visible {
+  box-shadow: 2px 2px 0px 0px var(--text-color);
+  transition: box-shadow 0.3s;
 }
 
 .dialog-floppy::backdrop {
   background-color: rgb(0 0 0 / 0.75);
 }
+
+
+
