@@ -318,15 +318,27 @@
   transition: box-shadow 0.3s;
 }
 
+.button__floppy-svg {
+  aspect-ratio: 1/1;
+  block-size: 21px;
+}
+
 @media (width <= 375px) {
   .save_button {
     flex-direction: column;
     block-size: 84px;
   }
-  .button__floppy {
-    width: 28px;
-    height: 28px;
+
+  .button__floppy-svg {
+    aspect-ratio: 1/1;
+    block-size: 28px;
   }
+}
+
+.dialog__floppy-svg {
+  block-size: 39px;
+  aspect-ratio: 1/1;
+  margin-block-start: 12px;
 }
 
 .save_button:focus-visible {
@@ -400,11 +412,11 @@
   text-transform: uppercase;
 }
 
+.dialog-floppy::backdrop {
+  background-color: rgb(0 0 0 / 0.75);
+}
+
 .dialog__button:focus-visible {
   box-shadow: 2px 2px 0px 0px var(--text-color);
   transition: box-shadow 0.3s;
-}
-
-.dialog-floppy::backdrop {
-  background-color: rgb(0 0 0 / 0.75);
 }
