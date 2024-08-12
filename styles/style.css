@@ -366,6 +366,7 @@
 }
 
 .button__text {
+  position: relative;
   z-index: 2;
   color: var(--button-text-color);
   mix-blend-mode: difference;
